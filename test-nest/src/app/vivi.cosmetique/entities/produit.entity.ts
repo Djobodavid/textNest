@@ -7,6 +7,7 @@ import {
 } from 'typeorm';
 import { StockageProduit } from './stock.entity';
 import { Vente } from './vente.entity';
+import { Promotion } from './promotion.entity';
 
 @Entity()
 export class Produit {
@@ -40,4 +41,10 @@ export class Produit {
     onUpdate: 'CASCADE',
   })
   ventes: Vente[];
+
+  @OneToMany(() => Promotion, (promotion) => promotion.produit, {
+    onDelete: 'SET NULL',
+    onUpdate: 'CASCADE',
+  })
+  promotions: Promotion[];
 }
