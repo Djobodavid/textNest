@@ -36,11 +36,15 @@ export class StockageProduit {
   @Column({ nullable: true, default: 0 })
   observation: string;
 
+  @Column({ nullable: false })
+  date_expiration: Date;
+
   @CreateDateColumn()
   createdAt: Date;
 
   @UpdateDateColumn()
   updatedAt: Date;
+  
 
   /* relation plusieur stock d'un produit */
   @ManyToOne(() => Produit, (prod) => prod.stocks, {
@@ -49,13 +53,6 @@ export class StockageProduit {
   })
   @JoinColumn()
   produit: Produit;
-
-  @ManyToOne(() => Client, (client) => client.stocks, {
-    onDelete: 'SET NULL',
-    onUpdate: 'CASCADE',
-  })
-  @JoinColumn()
-  client: Client;
 
   @ManyToOne(() => Fournisseur, (fournisseur) => fournisseur.stocks, {
     onDelete: 'SET NULL',

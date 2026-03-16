@@ -1,4 +1,4 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
 export class Category {
@@ -6,5 +6,8 @@ export class Category {
   id: string;
 
   @Column({ nullable: false })
-  unite: string;
+  category: string;
+
+  @CreateDateColumn()
+    createdAt: Date;
 }

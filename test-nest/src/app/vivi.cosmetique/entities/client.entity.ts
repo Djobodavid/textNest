@@ -1,5 +1,6 @@
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { StockageProduit } from "./stock.entity";
+import { Vente } from "./vente.entity";
 
 @Entity()
 export class Client {
@@ -15,10 +16,13 @@ export class Client {
   @Column({ nullable: false })
   telephone: string;
 
+  @CreateDateColumn()
+    createdAt: Date;
 
-  @OneToMany(() => StockageProduit, (stk) => stk.client, {
+
+  @OneToMany(() => Vente, (vente) => vente.client, {
       onDelete: 'SET NULL',
       onUpdate: 'CASCADE',
     })
-    stocks: StockageProduit[];
+    ventes: Vente[];
 }

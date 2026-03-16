@@ -1,5 +1,6 @@
 import {
   Column,
+  CreateDateColumn,
   Entity,
   JoinColumn,
   ManyToOne,
@@ -7,6 +8,7 @@ import {
 } from 'typeorm';
 import { Produit } from './produit.entity';
 import { Unite } from './unite.entity';
+import { Client } from './client.entity';
 
 @Entity()
 export class Vente {
@@ -28,6 +30,9 @@ export class Vente {
   @Column({ nullable: true, default: 0 })
   observation: string;
 
+  @CreateDateColumn()
+    createdAt: Date;
+
   @ManyToOne(() => Produit, (prod) => prod.ventes, {
     onDelete: 'SET NULL',
     onUpdate: 'CASCADE',
@@ -41,4 +46,12 @@ export class Vente {
   })
   @JoinColumn()
   unite: Unite;
+
+  /* relation vente d'un client */
+  @ManyToOne(() => Client, (client) => client.ventes, {
+    onDelete: 'SET NULL',
+    onUpdate: 'CASCADE',
+  })
+  @JoinColumn()
+  client: Client;   
 }

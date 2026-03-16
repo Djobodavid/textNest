@@ -23,10 +23,7 @@ export class Produit {
   prix_vente: number;
 
   @Column({ nullable: true })
-  image_url: string;
-
-  @Column({ nullable: false })
-  date_expiration: Date;
+  image: string;
 
   @CreateDateColumn()
   createdAt: Date;

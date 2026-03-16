@@ -1,4 +1,4 @@
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { StockageProduit } from './stock.entity';
 
 @Entity()
@@ -23,6 +23,12 @@ export class Utilisateur {
 
   @Column({ unique:true })
   email: string;
+
+  @Column({ nullable: true })
+  image: string;
+
+  @CreateDateColumn()
+    createdAt: Date;
 
   @OneToMany(() => StockageProduit, (stk) => stk.utilisateur, {
         onDelete: 'SET NULL',

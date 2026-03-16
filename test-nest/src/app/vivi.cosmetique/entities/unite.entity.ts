@@ -1,4 +1,4 @@
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { Utilisateur } from './utilisateur.entity';
 import { StockageProduit } from './stock.entity';
 import { Vente } from './vente.entity';
@@ -10,6 +10,10 @@ export class Unite {
 
   @Column({ nullable: false })
   unite: string;
+
+  @CreateDateColumn()
+    createdAt: Date;
+
 
   @OneToMany(() => StockageProduit, (stk) => stk.unite, {
     onDelete: 'SET NULL',
